@@ -10,36 +10,31 @@ import { i18n } from "../i18n"
 
 // Options interface defined in `ExplorerNode` to avoid circular dependency
 const defaultOptions = {
-  folderClickBehavior: "collapse",
-  folderDefaultState: "collapsed",
+  folderClickBehavior: "collapse" as const,
+  folderDefaultState: "collapsed" as const,
   useSavedState: true,
-  mapFn: (node) => {
+  mapFn: (node: FileNode) => {
     return node
   },
-  sortFn: (a, b) => {
+  sortFn: (a: FileNode, b: FileNode) => {
     // Sort order: folders first, then files. Sort folders and files alphabetically
     if ((!a.file && !b.file) || (a.file && b.file)) {
-      // numeric: true: Whether numeric collation should be used, such that "1" < "2" < "10"
-      // sensitivity: "base": Only strings that differ in base letters compare as unequal. Examples: a ≠ b, a = á, a = A
       return a.displayName.localeCompare(b.displayName, undefined, {
         numeric: true,
         sensitivity: "base",
       })
     }
 
-    if (a.file && !b.file) {
-      return 1
-    } else {
-      return -1
-    }
+    // Always keep folders before files
+    return a.file ? 1 : -1
   },
-  filterFn: (node) => node.name !== "tags",
-  order: ["filter", "map", "sort"],
+  filterFn: (node: FileNode) => node.name !== "tags",
+  order: ["filter", "map", "sort"] as const,
 } satisfies Options
 
 export default ((userOpts?: Partial<Options>) => {
   // Parse config
-  const opts: Options = { ...defaultOptions, ...userOpts }
+  const opts = { ...defaultOptions, ...userOpts }
 
   // memoized
   let fileTree: FileNode
@@ -54,7 +49,7 @@ export default ((userOpts?: Partial<Options>) => {
     fileTree = new FileNode("")
     allFiles.forEach((file) => fileTree.add(file))
 
-    // Execute all functions (sort, filter, map) that were provided (if none were provided, only default "sort" is applied)
+    // Execute all functions (sort, filter, map) that were provided
     if (opts.order) {
       // Order is important, use loop with index instead of order.map()
       for (let i = 0; i < opts.order.length; i++) {
