@@ -1,6 +1,7 @@
 import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
 import explorerStyle from "./styles/explorer.scss"
-
+import { getDate } from "./Date"
+import { GlobalConfiguration } from "../cfg"
 // @ts-ignore
 import script from "./scripts/explorer.inline"
 import { ExplorerNode, FileNode, Options } from "./ExplorerNode"
@@ -13,35 +14,20 @@ const defaultOptions = {
   folderClickBehavior: "collapse" as const,
   folderDefaultState: "collapsed" as const,
   useSavedState: true,
-  mapFn: (node: FileNode) => {
-    return node
-  },
+  mapFn: (node: FileNode) => node,
   sortFn: (a: FileNode, b: FileNode) => {
-    // Always keep folders before files
-    if (a.file && !b.file) return 1
-    if (!a.file && b.file) return -1
-    
-    // If both are files or both are folders
-    if (a.file?.frontmatter?.date && b.file?.frontmatter?.date) {
-      const parseDate = (dateStr: string) => {
-        const [month, day, year] = dateStr.split('.')
-        // Assuming YY format, convert to full year
-        const fullYear = year.length === 2 ? 2000 + parseInt(year) : parseInt(year)
-        return new Date(fullYear, parseInt(month) - 1, parseInt(day))
-      }
+    // Folders before files
+    if (!a.file !== !b.file) return a.file ? 1 : -1
+
+    // Both are files, try date-based sorting
+    if (a.file && b.file) {
+      const [aDate, bDate] = [a.file, b.file].map(f => 
+        getDate(f.cfg as GlobalConfiguration, f))
       
-      const aDate = parseDate(a.file.frontmatter.date as string)
-      const bDate = parseDate(b.file.frontmatter.date as string)
-      
-      // Sort descending (newest first)
-      return bDate.getTime() - aDate.getTime()
+      if (aDate || bDate) return bDate ? (aDate ? bDate.getTime() - aDate.getTime() : 1) : -1
     }
     
-    // If only one has a date, prioritize it
-    if (a.file?.frontmatter?.date) return -1
-    if (b.file?.frontmatter?.date) return 1
-    
-    // Fall back to alphabetical sorting
+    // Fallback to alphabetical
     return a.displayName.localeCompare(b.displayName, undefined, {
       numeric: true,
       sensitivity: "base",
@@ -59,27 +45,34 @@ export default ((userOpts?: Partial<Options>) => {
   let fileTree: FileNode
   let jsonTree: string
 
-  function constructFileTree(allFiles: QuartzPluginData[]) {
+  const applyOperation = (tree: FileNode, op: string) => {
+    const operations = {
+      map: () => tree.map(opts.mapFn),
+      sort: () => tree.sort(opts.sortFn),
+      filter: () => tree.filter(opts.filterFn),
+    }
+    operations[op as keyof typeof operations]?.()
+  }
+
+  function constructFileTree(allFiles: QuartzPluginData[], cfg: GlobalConfiguration) {
     if (fileTree) {
       return
     }
 
     // Construct tree from allFiles
     fileTree = new FileNode("")
-    allFiles.forEach((file) => fileTree.add(file))
+    allFiles.forEach((file) => {
+      // Ensure the configuration is passed to each file
+      file.cfg = cfg
+      fileTree.add(file)
+    })
 
     // Execute all functions (sort, filter, map) that were provided
     if (opts.order) {
       // Order is important, use loop with index instead of order.map()
       for (let i = 0; i < opts.order.length; i++) {
         const functionName = opts.order[i]
-        if (functionName === "map") {
-          fileTree.map(opts.mapFn)
-        } else if (functionName === "sort") {
-          fileTree.sort(opts.sortFn)
-        } else if (functionName === "filter") {
-          fileTree.filter(opts.filterFn)
-        }
+        applyOperation(fileTree, functionName)
       }
     }
 
@@ -95,7 +88,7 @@ export default ((userOpts?: Partial<Options>) => {
     displayClass,
     fileData,
   }: QuartzComponentProps) => {
-    constructFileTree(allFiles)
+    constructFileTree(allFiles, cfg)
     return (
       <div class={classNames(displayClass, "explorer")}>
         <button
