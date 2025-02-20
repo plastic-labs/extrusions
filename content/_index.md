@@ -4,7 +4,7 @@ enableToc: false
 description: Welcome to our collaborative second brain.
 ---
 > [!custom] PLASTIC IS HIRING!
-> Check out our [[Work at Plastic|open positions here]].
+> Check out our [[Working at Plastic|open positions here]].
 
 Welcome to our collaborative second brain. 
 

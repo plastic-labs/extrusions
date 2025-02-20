@@ -1,54 +1,51 @@
 ---
-title: (FILLED) Full-Stack Engineer
-date: 08.23.24
+title: Full-Stack Engineer
+date: 02.20.25
 tags:
   - positions
   - dev
   - announcements
 ---
-
-> [!custom] This position has been filled. However, we're always looking to meet great candidates. If you like what's listed here, please reach out regardless -- we are growing fast and might have similar positions in the future.
-> Check out our other [[Work at Plastic|open positions here]].
-
-(NYC / Remote, Full-Time)
+(NYC, Full-Time)
 
 ## About the Role
+We're searching for a product-minded full stack engineer to help shape and build Honcho's user-facing applications. You'll work at the intersection of design and engineering, rapidly iterating on product features while ensuring seamless integration with our infrastructure.
 
-We're searching for a full-stack engineer to help build [Honcho](https://honcho.dev), our user representation infrastructure, and accelerate the development of a new paradigm of AI personalization.
-
-You should be comfortable working across the stack, from crafting user interfaces to designing APIs and managing deployments. It requires strong foundations both frontend and backend.
-
-This role is a fast-paced opportunity to work alongside a seasoned interdisciplinary team. If you're eager to learn, can tackle diverse challenges quickly, and love building at the edge, get in touch.
+This role requires someone who can transform ideas into polished user experiences, from initial mockups to production-ready features. You'll be responsible for crafting intuitive interfaces, implementing responsive designs, and building the APIs that power them. If you're passionate about creating exceptional user experiences, can move quickly from concept to implementation, and love working at the frontier of AI technology, we want to hear from you.
 
 ## About You
-
 - 1-2 years experience or equivalent (new grads OK)
 - High cultural alignment with Plastic Labs' ethos
-- Primary location +/- 3 hrs of EST
-- Impulse for rapid learning & trying new tech at the edge
-- Adept with Python &/ Node.js
-- Experience building CRUD APIs
-- Experience with basic Linux & Shell
-- Experience with cloud deployment (AWS, GCP, Azure, Fly, etc)
-- Experience with SQL databases
-- Experience with Docker containers
-- Experience with Github & Git workflows
-- Experience leveraging AI tools to argument workflow
-- Familiarity with & interest in LLMs
-- Interest in security, distributed systems, & identity
-- Complementary interest in cognitive sciences (cs, linguistics, neuroscience, philosophy, & psychology) or other adjacent interdisciplinary fields a plus
+- NYC-based or open to NYC relocation
 
-## How to Apply
+### Technical Skills
+- Strong foundation in modern web development (Next.js, React)
+- Experience with Python backend development and FastAPI
+- Proficiency in building and maintaining CRUD APIs
+- Experience with SQL databases and data modeling
+- Comfortable with Docker containers and deployment
+- Experience with Git workflows and collaboration
+- Experience building with or integrating LLM-powered features
 
-Please send the following to dev@plasticlabs.ai:
+### Design & Product Skills
+- Eye for design and attention to detail
+- Experience translating mockups into production features
+- Ability to iterate quickly on user interfaces
+- Understanding of modern web design principles
+- Knowledge of responsive design and cross-browser compatibility
+- Interest in user experience and interaction design
 
-- **Resume/CV** in whatever form it exists (PDF, LinkedIn, website, etc)
-- **Portfolio** of notable work (GitHub, pubs, ArXiv, blog, X, etc)
-- **Statement** of alignment specific to Plastic Labs--how do you identify with our mission, how can you contribute, etc? (points for brief, substantive, heterodox)
+### Nice to Have
+- Design portfolio showcasing previous work
+- Experience with design tools (Figma, Sketch)
+- Formal UI/UX training or experience
+- Experience with design systems
+- Background in user research or usability testing
 
-Applications without these 3 items won't be considered, but be sure to optimize for speed over perfection. If relevant, be sure to credit the LLM you used.
+### Additional Qualities
+- Impulse for rapid learning & trying new tech
+- Interest in AI and LLM technologies
+- Complementary interest in cognitive sciences (ml, linguistics, neuroscience, philosophy, psychology, etc) or other adjacent interdisciplinary fields, a plus
 
-And it can't hurt to [join Discord](https://discord.gg/plasticlabs) and introduce yourself or engage with [our GitHub](https://github.com/plastic-labs).
 
-(Back to [[Work at Plastic]])
-
+(Back to [[Working at Plastic]])

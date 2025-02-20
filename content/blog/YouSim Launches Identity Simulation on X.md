@@ -100,7 +100,7 @@ We imagine a near future where any group could instantiate an agentic proxy to p
 
 ## Gratitude
 
-The team at [Plastic](https://plasticlabs.ai) has been amazed and inspired by the enthusiasm and earnestness of the community that's formed around YouSim over the last several days. Truly remarkable. Not to mention the generous donations to our [[careers/Research Grants|grants program]] (more to come here soon).
+The team at [Plastic](https://plasticlabs.ai) has been amazed and inspired by the enthusiasm and earnestness of the community that's formed around YouSim over the last several days. Truly remarkable. Not to mention the generous donations to our [[Research Grants|grants program]] (more to come here soon).
 
 Thank you all, excited to keep building together--we're in it for the long haul.
 
