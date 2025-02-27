@@ -1,6 +1,6 @@
 ---
 title: Release Notes 02.27.25
-date: 02.01.24
+date: 02.27.25
 tags:
   - releases
   - honcho
